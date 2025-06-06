@@ -26,6 +26,37 @@ WaveDNA operates through a two-stage pipeline:
 - **Feature Extraction**: The 50-layer architecture with residual blocks extracts hierarchical features
 - **Binary Output**: Final classification into TFBS (positive) or non-TFBS (negative) categories
 
+## Data for reproducing the analysis
+This project uses ChIP-seq data from the [ENCODE Project](https://www.encodeproject.org/) to train and evaluate models, as well as to perform explainability analyses.
+
+The following table lists the 13 transcription factors used in this project, along with their corresponding BED and BigWig file identifiers from ENCODE. The BED files are used to extract positive sequences for training WaveDNA, while bigWig files are used for conducting explainability analysis. For negative sequences, we used Meuleman et al. [DHS index](https://www.encodeproject.org/annotations/ENCSR857UZV/).
+
+| Transcription Factor (TF) | BED ID       | BigWig ID    |
+|---------------------------|--------------|--------------|
+| SETDB1                   | ENCFF812YDP  | ENCFF413AIX  |
+| GATA1                    | ENCFF657CTC  | ENCFF331URE  |
+| GATA2                    | ENCFF409YKQ  | ENCFF184LTK  |
+| JUND                     | ENCFF658HLG  | ENCFF292YDK  |
+| RFX5                     | ENCFF438ZEN  | ENCFF482YCH  |
+| HOXA3                    | ENCFF753OCA  | ENCFF631HAF  |
+| TCF7L2                   | ENCFF726SWQ  | ENCFF406WNX  |
+| ZBED1                    | ENCFF753UAX  | ENCFF606OSZ  |
+| NFKB2                    | ENCFF687TJX  | ENCFF918FFX  |
+| MEF2B                    | ENCFF884QQW  | ENCFF710GGG  |
+| LCORL                    | ENCFF606UCO  | ENCFF227FSQ  |
+| MBD2                     | ENCFF788YHU  | ENCFF510BMM  |
+| GMEB1                    | ENCFF365ETH  | ENCFF398IIR  |
+
+### Example
+
+To download the `ENCFF812YDP` BED file, use:
+https://www.encodeproject.org/files/ENCFF812YDP/@@download/ENCFF812YDP.bed.gz
+
+Please make sure to **unzip** your BED file before running the analysis.
+
+To download the `ENCFF413AIX` bigWig file, use:
+https://www.encodeproject.org/files/ENCFF812YDP/@@download/ENCFF812YDP.bigWig
+
 ## Usage
 
 ### 1. Environment Setup
@@ -72,7 +103,7 @@ WaveDNA requires two types of input data:
    - Format: `chr`, `start`, `end`, `name`, `score`, `strand`
 
 2. **Negative sequences**: BED file containing DNase hypersensitive sites
-   - We recommend using data from Meuleman et al. (available at [insert URL])
+   - We recommend using data from Meuleman et al. (available at [https://www.encodeproject.org/annotations/ENCSR857UZV/])
    - These represent accessible chromatin regions without specific TF binding
 
 ```bash
@@ -328,19 +359,3 @@ Arguments:
 --`bedCode`: ENCODE accession ID for the ChIP-seq BED file
 
 --`run_model`: Set to 1 to train the model after preprocessing, 0 to skip training
-
-
-## Citation
-
-If you use WaveDNA in your research, please cite our paper:
-```
-[Citation will be added upon publication]
-```
-
-## License
-
-[License information to be added]
-
-## Contact
-
-[Contact information to be added]
