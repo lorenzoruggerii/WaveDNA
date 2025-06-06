@@ -98,7 +98,7 @@ gunzip hg38.fa.gz
 
 WaveDNA requires two types of input data:
 
-1. **Positive sequences**: BED file from ChIP-seq experiments (ENCODE database)
+1. **Positive sequences**: BED file from ChIP-seq experiments (ENCODE database) (see Section `Data` to download data used in the study)
    - Contains genomic coordinates of transcription factor binding sites
    - Format: `chr`, `start`, `end`, `name`, `score`, `strand`
 
